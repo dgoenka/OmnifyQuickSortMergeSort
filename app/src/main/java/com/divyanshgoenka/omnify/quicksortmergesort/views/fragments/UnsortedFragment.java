@@ -112,7 +112,7 @@ public class UnsortedFragment extends BaseFragment implements SortingInterface, 
 
     public void populateList() {
         randomNumberSetObserver = new RandomNumberSetObserver(this);
-        RandomNumberSet.generate(Constants.DEFAULT_SIZE).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(randomNumberSetObserver);
+        RandomNumberSet.Generator.generate(Constants.DEFAULT_SIZE).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(randomNumberSetObserver);
 
     }
 

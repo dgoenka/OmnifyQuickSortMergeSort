@@ -13,22 +13,22 @@ import io.reactivex.functions.Function;
 public class RandomNumberSet implements Serializable {
     private final Integer[] numbers;
 
-    private RandomNumberSet(int size) {
-        numbers = new Integer[size];
+    private RandomNumberSet(Integer[] numbers) {
+        this.numbers = numbers;
     }
 
-    public static Observable<RandomNumberSet> generate(final int size) {
-        return Observable.just(size).map(new Function<Integer, RandomNumberSet>() {
-            @Override
-            public RandomNumberSet apply(Integer integer) throws Exception {
-                RandomNumberSet randomNumberSet = new RandomNumberSet(size);
+    public static class Generator {
+        public static Observable<RandomNumberSet> generate(final int size) {
+            return Observable.just(size).map(integer -> {
                 Random random = new Random();
+                Integer[] numbers = new Integer[integer];
                 for (int i = 0; i < size; i++) {
-                    randomNumberSet.numbers[i] = 10 + random.nextInt(90);
+                    numbers[i] = 10 + random.nextInt(90);
                 }
+                RandomNumberSet randomNumberSet = new RandomNumberSet(numbers);
                 return randomNumberSet;
-            }
-        });
+            });
+        }
     }
 
     public Integer[] getNumbers() {
