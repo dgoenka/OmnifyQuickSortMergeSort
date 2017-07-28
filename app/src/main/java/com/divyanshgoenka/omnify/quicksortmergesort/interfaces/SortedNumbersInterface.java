@@ -1,5 +1,7 @@
 package com.divyanshgoenka.omnify.quicksortmergesort.interfaces;
 
+import android.os.Handler;
+
 import com.divyanshgoenka.omnify.quicksortmergesort.model.SortingResults;
 
 /**
@@ -7,5 +9,8 @@ import com.divyanshgoenka.omnify.quicksortmergesort.model.SortingResults;
  */
 
 public interface SortedNumbersInterface {
+
     void resultsAvailable(SortingResults sortingResults);
+
+    Handler getHandler();
 }

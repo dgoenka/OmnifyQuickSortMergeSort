@@ -5,13 +5,13 @@ package com.divyanshgoenka.omnify.quicksortmergesort.util;
  */
 
 
-public class QuickSort  {
+public class QuickSort {
     private Integer[] numbers;
     private int number;
 
     public void sort(Integer[] values) {
         // check for empty or null array
-        if (values ==null || values.length==0){
+        if (values == null || values.length == 0) {
             return;
         }
         this.numbers = values;
@@ -22,7 +22,7 @@ public class QuickSort  {
     private void quicksort(int low, int high) {
         int i = low, j = high;
         // Get the pivot element from the middle of the list
-        int pivot = numbers[low + (high-low)/2];
+        int pivot = numbers[low + (high - low) / 2];
 
         // Divide into two lists
         while (i <= j) {

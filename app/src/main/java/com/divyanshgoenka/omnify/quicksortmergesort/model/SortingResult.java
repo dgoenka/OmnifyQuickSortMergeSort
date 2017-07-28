@@ -30,7 +30,7 @@ public class SortingResult implements Serializable {
     }
 
     public CharSequence getMethodNameAndTime() {
-        return getSortingMechanism().toString() + " - " + getTimeTaken() +"ms";
+        return getSortingMechanism().toString() + " - " + getTimeTaken() + "ms";
     }
 
     public SortingUtil.SortingMechanism getSortingMechanism() {

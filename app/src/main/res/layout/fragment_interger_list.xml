@@ -9,6 +9,7 @@
     android:scrollbars="vertical|horizontal"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:fadeScrollbars="false"
+    android:scrollbarStyle="insideOverlay"
     app:layoutManager="LinearLayoutManager"
     tools:context="com.divyanshgoenka.omnify.quicksortmergesort.views.fragments.UnsortedFragment"
     tools:listitem="@layout/fragment_interger" />

@@ -1,17 +1,11 @@
 package com.divyanshgoenka.omnify.quicksortmergesort.views.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -41,24 +35,24 @@ public class SortedResultsFragment extends BaseFragment {
         if (getArguments() != null) {
             mSortingResults = (SortingResults) getArguments().getSerializable(SORTING_RESULTS);
         }
-
-        setupToolbar();
     }
 
-    private void setupToolbar() {
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
         getActivity().setTitle(R.string.sorted_results);
-        setHasOptionsMenu(true);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_sorted_results, container, false);
+        View view = inflater.inflate(R.layout.fragment_sorted_results, container, false);
         View mQuickSortLayout = view.findViewById(R.id.quick_sort_layout);
         View mMergeSortLayout = view.findViewById(R.id.merge_sort_layout);
-        setView(mQuickSortLayout,mSortingResults.getQuickSortResult());
-        setView(mMergeSortLayout,mSortingResults.getMergeSortResult());
+        setView(mQuickSortLayout, mSortingResults.getQuickSortResult());
+        setView(mMergeSortLayout, mSortingResults.getMergeSortResult());
         return view;
     }
 

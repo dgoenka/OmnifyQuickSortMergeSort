@@ -6,10 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import com.divyanshgoenka.omnify.quicksortmergesort.R;
-
-import java.util.List;
 
 public class IntergerRecyclerViewAdapter extends RecyclerView.Adapter<IntergerRecyclerViewAdapter.ViewHolder> {
 

@@ -7,8 +7,8 @@ import java.io.Serializable;
  */
 
 public class SortingResults implements Serializable {
-  private SortingResult quickSortResult;
-  private SortingResult mergeSortResult;
+    private SortingResult quickSortResult;
+    private SortingResult mergeSortResult;
 
     public SortingResult getQuickSortResult() {
         return quickSortResult;

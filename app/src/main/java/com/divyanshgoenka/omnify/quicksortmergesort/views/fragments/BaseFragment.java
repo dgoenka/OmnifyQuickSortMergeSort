@@ -20,6 +20,7 @@ public class BaseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().invalidateOptionsMenu();
+        setupToolbar();
     }
 
     @Override
@@ -34,6 +35,7 @@ public class BaseFragment extends Fragment {
         switch (item.getItemId()) {
             case android.R.id.home:
                 ((MainActivity) getActivity()).popBackStack();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -42,5 +44,9 @@ public class BaseFragment extends Fragment {
         if (getActivity() instanceof MainActivity)
             return ((MainActivity) getActivity());
         return null;
+    }
+
+    private void setupToolbar() {
+        setHasOptionsMenu(true);
     }
 }

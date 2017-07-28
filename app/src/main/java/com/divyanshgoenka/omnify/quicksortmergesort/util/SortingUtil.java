@@ -8,15 +8,19 @@ import com.divyanshgoenka.omnify.quicksortmergesort.model.SortingResult;
  */
 
 public class SortingUtil {
-    public static SortingResult sort(SortingMechanism sortingMechanism,RandomNumberSet randomNumberSet) {
+    public static SortingResult sort(SortingMechanism sortingMechanism, RandomNumberSet randomNumberSet) {
         SortingResult sortingResult = new SortingResult();
         Integer[] numberSet = randomNumberSet.getNumbers();
         long timeNow = System.currentTimeMillis();
-            switch (sortingMechanism){
-                case MERGESORT: mergeSort(numberSet);break;
-                case QUICKSORT:quickSort(numberSet);break;
+        switch (sortingMechanism) {
+            case MERGESORT:
+                mergeSort(numberSet);
+                break;
+            case QUICKSORT:
+                quickSort(numberSet);
+                break;
 
-            }
+        }
         sortingResult.setTimeTaken(System.currentTimeMillis() - timeNow);
         sortingResult.setNumbers(numberSet);
         sortingResult.setSortingMechanism(sortingMechanism);
@@ -31,7 +35,7 @@ public class SortingUtil {
         new MergeSort().sort(numberSet);
     }
 
-    public  enum SortingMechanism{
+    public enum SortingMechanism {
         QUICKSORT, MERGESORT
     }
 }
