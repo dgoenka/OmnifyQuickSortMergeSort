@@ -11,12 +11,19 @@ import io.reactivex.disposables.Disposable;
  */
 public class RandomNumberSetObserver implements Observer<RandomNumberSet> {
 
-    private final SortingInterface sortingInterface;
+    private SortingInterface sortingInterface;
 
-    public RandomNumberSetObserver(SortingInterface sortingInterface) {
+    public RandomNumberSetObserver(){}
+
+    public void registerSortingInterface(SortingInterface sortingInterface) {
         this.sortingInterface = sortingInterface;
     }
 
+
+
+    public void unregisterSortingInterface(){
+        this.sortingInterface = null;
+    }
 
     @Override
     public void onSubscribe(Disposable d) {

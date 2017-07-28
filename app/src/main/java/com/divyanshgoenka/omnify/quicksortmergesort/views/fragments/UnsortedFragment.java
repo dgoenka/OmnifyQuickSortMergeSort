@@ -31,7 +31,7 @@ public class UnsortedFragment extends BaseFragment implements SortingInterface, 
 
     RandomNumberSet randomNumberSet;
 
-    RandomNumberSetObserver randomNumberSetObserver = new RandomNumberSetObserver(this);
+    final RandomNumberSetObserver randomNumberSetObserver = new RandomNumberSetObserver();
 
     Handler resultsMessageHandler = new Handler(new Handler.Callback() {
         @Override
@@ -79,13 +79,11 @@ public class UnsortedFragment extends BaseFragment implements SortingInterface, 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        getMainActivity().registerSortedNumberInterface(this);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        getMainActivity().unregisterSortedNumbersInterface();
     }
 
     @Override
@@ -96,10 +94,16 @@ public class UnsortedFragment extends BaseFragment implements SortingInterface, 
         return recyclerView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        registerObservers();
+        populateList();
+    }
+
     public void setupView(View view) {
         if (view instanceof RecyclerView) {
             setupRecyclerView((RecyclerView) view);
-            populateList();
         }
     }
 
@@ -111,11 +115,25 @@ public class UnsortedFragment extends BaseFragment implements SortingInterface, 
     }
 
     public void populateList() {
-        randomNumberSetObserver = new RandomNumberSetObserver(this);
         RandomNumberSet.Generator.generate(Constants.DEFAULT_SIZE).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(randomNumberSetObserver);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterObservers();
+    }
+
+    public void registerObservers(){
+        getMainActivity().registerSortedNumberInterface(this);
+        randomNumberSetObserver.registerSortingInterface(this);
 
     }
 
+    public void unregisterObservers(){
+        getMainActivity().unregisterSortedNumbersInterface();
+        randomNumberSetObserver.unregisterSortingInterface();
+    }
 
     @Override
     public void onListReady(RandomNumberSet randomNumberSet) {
