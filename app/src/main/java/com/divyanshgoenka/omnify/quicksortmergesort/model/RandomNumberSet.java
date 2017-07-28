@@ -1,10 +1,11 @@
 package com.divyanshgoenka.omnify.quicksortmergesort.model;
 
+import com.divyanshgoenka.omnify.quicksortmergesort.util.Constants;
+
 import java.io.Serializable;
 import java.util.Random;
 
 import io.reactivex.Observable;
-import io.reactivex.functions.Function;
 
 /**
  * Created by divyanshgoenka on 27/07/17.
@@ -23,7 +24,7 @@ public class RandomNumberSet implements Serializable {
                 Random random = new Random();
                 Integer[] numbers = new Integer[integer];
                 for (int i = 0; i < size; i++) {
-                    numbers[i] = 10 + random.nextInt(90);
+                    numbers[i] = Constants.LOWER_BOUND_INCLUSIVE + random.nextInt(Constants.UPPER_BOUND_NON_INCLUSIVE);
                 }
                 RandomNumberSet randomNumberSet = new RandomNumberSet(numbers);
                 return randomNumberSet;
