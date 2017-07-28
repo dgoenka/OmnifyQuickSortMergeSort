@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
         unbindService(mSortServiceConnection);
     }
 
@@ -56,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
         Intent intent = new Intent(this, SorterService.class);
         startService(intent);
-        bindService(intent, mSortServiceConnection, Context.BIND_AUTO_CREATE);
 
         if (savedInstanceState == null) {
             switchFragment(UnsortedFragment.newInstance());
@@ -65,6 +69,13 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         getSupportFragmentManager().addOnBackStackChangedListener(this);
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = new Intent(this, SorterService.class);
+        bindService(intent, mSortServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     public void registerSortedNumberInterface(SortedNumbersInterface sortedNumbersInterface) {
@@ -97,14 +108,17 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
     @Override
     public void onBackPressed() {
-        popBackStack();
+        if(!popBackStack())
+            moveTaskToBack(true);
     }
 
-    public void popBackStack() {
+    public boolean popBackStack() {
         FragmentManager fm = getSupportFragmentManager();
         if (fm.getBackStackEntryCount() > 1) {
             fm.popBackStackImmediate();
+            return true;
         }
+        return false;
     }
 
     @Override

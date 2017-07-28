@@ -9,6 +9,7 @@
         android:id="@+id/method_name_time_taken"
         android:gravity="center"
         android:textStyle="bold"
+        android:background="@drawable/back"
         android:textSize="16dp"
         android:padding="5dp"
         />
