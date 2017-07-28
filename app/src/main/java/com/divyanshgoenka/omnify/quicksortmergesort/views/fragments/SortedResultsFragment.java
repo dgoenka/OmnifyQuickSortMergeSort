@@ -1,5 +1,6 @@
 package com.divyanshgoenka.omnify.quicksortmergesort.views.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.divyanshgoenka.omnify.quicksortmergesort.R;
 import com.divyanshgoenka.omnify.quicksortmergesort.model.SortingResult;
 import com.divyanshgoenka.omnify.quicksortmergesort.model.SortingResults;
+import com.divyanshgoenka.omnify.quicksortmergesort.util.Constants;
 import com.divyanshgoenka.omnify.quicksortmergesort.views.adapters.IntergerRecyclerViewAdapter;
 
 
@@ -34,7 +36,15 @@ public class SortedResultsFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mSortingResults = (SortingResults) getArguments().getSerializable(SORTING_RESULTS);
+        }else if(savedInstanceState!=null){
+            mSortingResults = (SortingResults) savedInstanceState.getSerializable(SORTING_RESULTS);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(Constants.SORTING_RESULTS,mSortingResults);
     }
 
     @Override
@@ -53,6 +63,7 @@ public class SortedResultsFragment extends BaseFragment {
         View mMergeSortLayout = view.findViewById(R.id.merge_sort_layout);
         setView(mQuickSortLayout, mSortingResults.getQuickSortResult());
         setView(mMergeSortLayout, mSortingResults.getMergeSortResult());
+        getActivity().invalidateOptionsMenu();
         return view;
     }
 

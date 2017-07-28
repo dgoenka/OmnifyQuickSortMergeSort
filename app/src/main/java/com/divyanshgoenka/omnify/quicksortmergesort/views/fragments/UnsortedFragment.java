@@ -45,6 +45,7 @@ public class UnsortedFragment extends BaseFragment implements SortingInterface, 
             return false;
         }
     });
+    private boolean didUseSaveInstanceState = false;
 
     public static UnsortedFragment newInstance() {
         UnsortedFragment fragment = new UnsortedFragment();
@@ -91,6 +92,12 @@ public class UnsortedFragment extends BaseFragment implements SortingInterface, 
                              Bundle savedInstanceState) {
         recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_interger_list, container, false);
         setupView(recyclerView);
+        getActivity().invalidateOptionsMenu();
+        if (savedInstanceState != null) {
+            RandomNumberSet randomNumberSet = (RandomNumberSet) savedInstanceState.getSerializable(Constants.RANDOM_NUMBER_SET);
+            onListReady(randomNumberSet);
+            setDidUseSaveInstanceState(true);
+        }
         return recyclerView;
     }
 
@@ -98,7 +105,24 @@ public class UnsortedFragment extends BaseFragment implements SortingInterface, 
     public void onResume() {
         super.onResume();
         registerObservers();
-        populateList();
+        if (!getDidUseSaveInstanceState())
+            populateList();
+    }
+
+    private void setDidUseSaveInstanceState(boolean didUseSaveInstanceState) {
+        this.didUseSaveInstanceState = didUseSaveInstanceState;
+    }
+
+    private boolean getDidUseSaveInstanceState() {
+        boolean result = didUseSaveInstanceState;
+        didUseSaveInstanceState = false;
+        return result;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(Constants.RANDOM_NUMBER_SET, randomNumberSet);
     }
 
     public void setupView(View view) {
@@ -124,13 +148,13 @@ public class UnsortedFragment extends BaseFragment implements SortingInterface, 
         unregisterObservers();
     }
 
-    public void registerObservers(){
+    public void registerObservers() {
         getMainActivity().registerSortedNumberInterface(this);
         randomNumberSetObserver.registerSortingInterface(this);
 
     }
 
-    public void unregisterObservers(){
+    public void unregisterObservers() {
         getMainActivity().unregisterSortedNumbersInterface();
         randomNumberSetObserver.unregisterSortingInterface();
     }
