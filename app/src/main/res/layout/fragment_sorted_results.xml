@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.divyanshgoenka.omnify.quicksortmergesort.views.fragments.SortedResultsFragment">
+
+    <include
+        android:id="@+id/quick_sort_layout"
+        layout="@layout/result_with_time"
+        />
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        />
+    <include
+        android:id="@+id/merge_sort_layout"
+        layout="@layout/result_with_time"
+        />
+
+</LinearLayout>
