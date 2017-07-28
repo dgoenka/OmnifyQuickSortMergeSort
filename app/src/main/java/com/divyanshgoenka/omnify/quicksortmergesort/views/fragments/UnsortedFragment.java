@@ -64,6 +64,10 @@ public class UnsortedFragment extends BaseFragment implements SortingInterface, 
             case R.id.sort:
                 startSorting();
                 break;
+
+            case R.id.regenerate:
+                populateList();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
