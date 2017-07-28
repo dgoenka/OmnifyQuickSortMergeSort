@@ -1,7 +1,7 @@
 package com.divyanshgoenka.omnify.quicksortmergesort.util;
 
 /**
- * Created by divyanshgoenka on 27/07/17.
+ * Created by Lars Vogel on 29/09/16.
  */
 
 public class MergeSort {

@@ -2,7 +2,7 @@
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
+    android:id="@+id/recyclerView"
     android:name="com.divyanshgoenka.omnify.quicksortmergesort.views.fragments.UnsortedFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +10,7 @@
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:fadeScrollbars="false"
     android:scrollbarStyle="insideOverlay"
+    android:scrollbarThumbVertical ="@drawable/scrollbar"
     app:layoutManager="LinearLayoutManager"
     tools:context="com.divyanshgoenka.omnify.quicksortmergesort.views.fragments.UnsortedFragment"
     tools:listitem="@layout/fragment_interger" />
